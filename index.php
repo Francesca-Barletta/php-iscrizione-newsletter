@@ -2,21 +2,21 @@
 // var_dump($_POST);
 $email = $_POST['email'] ?? '';
 var_dump("email: ,$email");
-$send = isset($_POST['email']);
+var_dump(isset($_POST['email']));
+
 function validEmail($email){
-    if(str_contains($email,'@') && str_contains($email, '.')){
+    //se il pulsante invia è stato cliccato, la mail è lunga più di 5 e contiene sia '@' che '.' allora la email è valida (true)
+    if(strlen($email) > 5 && str_contains($email,'@') && str_contains($email, '.')){
         var_dump("la mail $email è valida");
         return true;
-    }
-    elseif(isset($_POST['email']) === true && strlen($email) == 0){
-          return false;
-          var_dump("la mail $email non è valida");
-     };
+        //se la il pulsante invia è stato cliccato e la mail è vuota allora inserisci email (false)    
+    }elseif(isset($_POST['email'])){
+        var_dump("la mail $email non è valida");
+        return false;
+    };
 };
-validEmail($email);
+var_dump(validEmail($email));
 
-
-var_dump("send $send");
 ?>
 <!DOCTYPE html>
 <html lang="en">

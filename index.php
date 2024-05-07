@@ -1,13 +1,8 @@
 <?php
-
+// var_dump($_POST);
+$email = $_POST['email'] ?? '';
+var_dump($email);
 ?>
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,12 +15,20 @@
 <body>
     <div class="container">
         <div class="row">
-        <form action="" method="POST">
+        <!-- <form action="" method="GET">
           <div class="mb-3 col-4" >
             <label for="email" class="form-label">Iscriviti alla newsletter:</label>
             <input type="text" class="form-control" id="email" placeholder="example@gmail.com">
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">Invia</button>
+        </form> -->
+        <form action="" method="POST">
+            <div>
+                <input type="text" name="email">
+            </div>
+            <div>
+                <button>invia</button>
+            </div>
         </form>
         </div>
     </div>

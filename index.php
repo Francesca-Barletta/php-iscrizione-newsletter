@@ -1,25 +1,28 @@
 <?php
 // var_dump($_POST);
 $email = $_POST['email'] ?? '';
-var_dump("email: ,$email");
-var_dump(isset($_POST['email']));
+
+include __DIR__ . '/utilities.php';
+// var_dump("email: ,$email");
+// var_dump(isset($_POST['email']));
 // clicco invia e $_POST['email'] diventa true, a quel punto verifico la mail e escono gli alert di conseguenza,
 //se ancora non ho cliccato e $_POST['email'] è ancora falso non devo vedere nessun alert
-function validEmail($email){
-    if(isset($_POST['email']) === true){
-        //se il pulsante invia è stato cliccato, la mail è lunga più di 5 e contiene sia '@' che '.' allora la email è valida (true)
-            if(strlen($email) > 5 && str_contains($email,'@') && str_contains($email, '.')){
-                // var_dump("la mail $email è valida");
-                return true;
-                //se la il pulsante invia è stato cliccato e la mail è vuota allora inserisci email (false)    
-         }else{
-                // var_dump("la mail $email non è valida");
-                return false;
-         };
-    };
+// function validEmail($email){
+//       //se il pulsante invia è stato cliccato
+//     if(isset($_POST['email']) === true){
+//         //se la mail è lunga più di 5 e contiene sia '@' che '.' allora la email è valida (true)
+//             if(strlen($email) > 5 && str_contains($email,'@') && str_contains($email, '.')){
+//                 // var_dump("la mail $email è valida");
+//                 return true;
+//                 //altrimenti (false)    
+//          }else{
+//                 // var_dump("la mail $email non è valida");
+//                 return false;
+//          };
+//     };
     
-};
-var_dump(validEmail($email));
+// };
+// var_dump(validEmail($email));
 
 ?>
 <!DOCTYPE html>
@@ -34,14 +37,14 @@ var_dump(validEmail($email));
 <body>
     <div class="container">
         <div class="row">
-        <!-- <form action="" method="GET">
+        <form action="" method="POST">
           <div class="mb-3 col-4" >
             <label for="email" class="form-label">Iscriviti alla newsletter:</label>
-            <input type="text" class="form-control" id="email" placeholder="example@gmail.com">
+            <input type="text" class="form-control" name="email" id="email" placeholder="example@gmail.com">
           </div>
           <button type="submit" class="btn btn-primary">Invia</button>
-        </form> -->
-        <form action="" method="POST">
+        </form>
+        <!-- <form action="" method="POST">
             <div>
                 <input type="text" name="email">
             </div>
@@ -49,7 +52,7 @@ var_dump(validEmail($email));
                 <button>invia</button>
             </div>
 
-        </form>
+        </form> -->
         <div class>
                 <?php if(validEmail($email) === true) { ?>
                     <div class="alert alert-primary col-4" role="alert">

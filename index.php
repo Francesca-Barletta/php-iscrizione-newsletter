@@ -1,7 +1,22 @@
 <?php
 // var_dump($_POST);
 $email = $_POST['email'] ?? '';
-var_dump($email);
+var_dump("email: ,$email");
+$send = isset($_POST['email']);
+function validEmail($email){
+    if(str_contains($email,'@') && str_contains($email, '.')){
+        var_dump("la mail $email è valida");
+        return true;
+    }
+    elseif(isset($_POST['email']) === true && strlen($email) == 0){
+          return false;
+          var_dump("la mail $email non è valida");
+     };
+};
+validEmail($email);
+
+
+var_dump("send $send");
 ?>
 <!DOCTYPE html>
 <html lang="en">

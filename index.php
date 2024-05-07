@@ -30,42 +30,45 @@ include __DIR__ . '/utilities.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Newsletter</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-        <form action="" method="POST">
-          <div class="mb-3 col-4" >
-            <label for="email" class="form-label">Iscriviti alla newsletter:</label>
-            <input type="text" class="form-control" name="email" id="email" placeholder="example@gmail.com">
-          </div>
-          <button type="submit" class="btn btn-primary">Invia</button>
-        </form>
-        <!-- <form action="" method="POST">
-            <div>
-                <input type="text" name="email">
-            </div>
-            <div>
-                <button>invia</button>
-            </div>
+    <header>
+        <?php include __DIR__ . '/header.php';?>
+    </header>
+    <main class="mh-100">
+      <div class="container">
+        <div class="row h-100 justify-content-center">
+            <form action="" class="col-4 mb-3" method="POST">
+              <div class="mb-3" >
+                <label for="email" class="form-label">Iscriviti alla newsletter:</label>
+                <input type="text" class="form-control" name="email" id="email" placeholder="example@gmail.com">
+              </div>
+              <button type="submit" class="btn btn-primary">Invia</button>
+            </form>
+        </div>
+      </div>
+      <div class="container">
+            <div class="row justify-content-center">
+                    <?php if(validEmail($email) === true) { ?>
+                        <div class="alert alert-primary col-3 text-center" role="alert">
+                        email valida
+                      </div>
+                    <?php }elseif(validEmail($email) === false){ ?>
+                        <div class="alert alert-danger col-3 text-center" role="alert">
+                        email non valida
+                      </div>
+                     <?php } ?>
+             </div>
+      </div>
+ 
+    </main>
+    <footer>
+        <?php include __DIR__ . '/footer.php';?>
+    </footer>
 
-        </form> -->
-        <div class>
-                <?php if(validEmail($email) === true) { ?>
-                    <div class="alert alert-primary col-4" role="alert">
-                    email valida
-                  </div>
-                <?php }elseif(validEmail($email) === false){ ?>
-                    <div class="alert alert-danger col-4" role="alert">
-                    email non valida
-                  </div>
-                 <?php } ?>
-            </div>
-    </div>
-   
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>  
+
 </body>
 </html>

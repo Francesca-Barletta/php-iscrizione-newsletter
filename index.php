@@ -1,28 +1,15 @@
 <?php
-// var_dump($_POST);
-$email = $_POST['email'] ?? '';
+
+$email = $_POST['email'] ?? null;
 
 include __DIR__ . '/utilities.php';
-// var_dump("email: ,$email");
-// var_dump(isset($_POST['email']));
-// clicco invia e $_POST['email'] diventa true, a quel punto verifico la mail e escono gli alert di conseguenza,
-//se ancora non ho cliccato e $_POST['email'] è ancora falso non devo vedere nessun alert
-// function validEmail($email){
-//       //se il pulsante invia è stato cliccato
-//     if(isset($_POST['email']) === true){
-//         //se la mail è lunga più di 5 e contiene sia '@' che '.' allora la email è valida (true)
-//             if(strlen($email) > 5 && str_contains($email,'@') && str_contains($email, '.')){
-//                 // var_dump("la mail $email è valida");
-//                 return true;
-//                 //altrimenti (false)    
-//          }else{
-//                 // var_dump("la mail $email non è valida");
-//                 return false;
-//          };
-//     };
-    
-// };
-// var_dump(validEmail($email));
+
+if($email !== null){
+    session_start();
+    $_SESSION['email'] = $email;
+    header('Location: ./subscription.php');
+
+};
 
 ?>
 <!DOCTYPE html>
@@ -35,40 +22,30 @@ include __DIR__ . '/utilities.php';
   </head>
 </head>
 <body>
-    <header>
-        <?php include __DIR__ . '/header.php';?>
+  <div class="vh-100 d-flex flex-column">
+  <header>
+        <?php include_once __DIR__ . '/header.php';?>
     </header>
-    <main class="mh-100">
-      <div class="container">
-        <div class="row h-100 justify-content-center">
-            <form action="" class="col-4 mb-3" method="POST">
+    <main class="flex-grow-1">
+       <div class="container">
+          <div class="row flex-column align-items-center">
+            <form action="" class="col-4 m-3" method="POST">
               <div class="mb-3" >
                 <label for="email" class="form-label">Iscriviti alla newsletter:</label>
-                <input type="text" class="form-control" name="email" id="email" placeholder="example@gmail.com">
+                <input type="text" class="form-control" name="email" id="email" placeholder="example@gmail.com" >
               </div>
               <button type="submit" class="btn btn-primary">Invia</button>
             </form>
-        </div>
-      </div>
-      <div class="container">
-            <div class="row justify-content-center">
-                    <?php if(validEmail($email) === true) { ?>
-                        <div class="alert alert-primary col-3 text-center" role="alert">
-                        email valida
-                      </div>
-                    <?php }elseif(validEmail($email) === false){ ?>
-                        <div class="alert alert-danger col-3 text-center" role="alert">
-                        email non valida
-                      </div>
-                     <?php } ?>
-             </div>
-      </div>
+      
+                
+          </div> 
+       </div> 
+      
  
     </main>
     <footer>
-        <?php include __DIR__ . '/footer.php';?>
+        <?php include_once __DIR__ . '/footer.php';?>
     </footer>
-
-
+  </div>
 </body>
 </html>
